@@ -14,17 +14,23 @@
     </header>
 
     <section class="serch-bar main-layout">
-        <h2>serch keyword</h2>
+        <h2>search keyword</h2>
     </section>
-    
+
 
     <section class="main-gallery main-layout">
-
+        <img onclick="onChooseImg(this)" data-name="1" class="pic img-1" src="meme-imgs-square/1.jpg"></div>
+        <img onclick="onChooseImg(this)" data-name="2" class="pic img-2" src="meme-imgs-square/2.jpg"></div>
+        <img onclick="onChooseImg(this)" data-name="3" class="pic img-3" src="meme-imgs-square/3.jpg"></div>
+        <img onclick="onChooseImg(this)" data-name="4" class="pic img-4" src="meme-imgs-square/4.jpg"></div>
+        
     </section>
 
     <main class="main-content main-layout flex center space-between">
         <canvas width="270" height="270" style="border: 1px solid black;"></canvas>
-        <section class="main-controls"></section>
+        <section class="main-controls">
+            <input class="meme-text" type="text" onkeyup="textOnCanvas(this)">
+        </section>
     </main>
 
     <footer></footer>

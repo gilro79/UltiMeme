@@ -7,7 +7,7 @@ var gCtx;
 function init() {
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
-
+    getTextToInput();
     renderCanvas();
 }
 
@@ -21,15 +21,21 @@ function drawImgFromlocal() {
     }
 }
 
+function getTextToInput(){
+    const inputText = document.querySelector('.meme-text');
+    const {text} = getText();
+    inputText.value = text;
+}
+
 function renderCanvas() {
-    gCtx.save()
+    // gCtx.save()
     drawImgFromlocal();
-    gCtx.restore();
+    // gCtx.restore();
 }
 
 function renderText() {
-    const lines = getText();
-    const { text, size, align, color } = lines[0];
+    const line = getText();
+    const { text, size, align, color } = line;
     drawText(text, size, align, color);
 }
 
@@ -40,4 +46,17 @@ function drawText(text, size, align, color) {
     gCtx.font = `${size}px Impact`;
     gCtx.fillText(text, 40, 40);
     gCtx.strokeText(text, 40, 40);
+}
+
+function textOnCanvas(el){
+    const text = el.value;
+    updateText(text);
+    renderCanvas();
+}
+
+function onChooseImg(el){
+    const imgIdx = el.dataset.name;
+    setNewgMeme(imgIdx);
+    renderCanvas();
+    getTextToInput();
 }
