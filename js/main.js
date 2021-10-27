@@ -14,7 +14,7 @@ function init() {
 function drawImgFromlocal() {
     var img = new Image();
     const imgId = getImgId();
-    img.src = `meme-imgs-square/${imgId}.jpg`;
+    img.src = `img/meme-imgs-square/${imgId}.jpg`;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
         renderText();
@@ -40,12 +40,14 @@ function renderText() {
 }
 
 function drawText(text, size, align, color) {
+    const x = gCanvas.width / 2;
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = 'black';
     gCtx.fillStyle = 'white';
     gCtx.font = `${size}px Impact`;
-    gCtx.fillText(text, 40, 40);
-    gCtx.strokeText(text, 40, 40);
+    gCtx.textAlign = 'center';
+    gCtx.fillText(text, x, 40);
+    gCtx.strokeText(text, x, 40);
 }
 
 function textOnCanvas(el){
@@ -59,4 +61,16 @@ function onChooseImg(el){
     setNewgMeme(imgIdx);
     renderCanvas();
     getTextToInput();
+}
+
+function onIncreaseFont(){
+    const sign = 1;
+    changeFontSize(sign)
+    renderCanvas();
+}
+
+function onDecreaseFont(){
+    const sign = -1;
+    changeFontSize(sign)
+    renderCanvas();
 }

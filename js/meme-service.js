@@ -7,7 +7,7 @@ var gMeme = {
     lines: [
         {
             text: 'What am I doing?',
-            size: 30,
+            size: 25,
             align: 'center',
             color: 'white'
         }
@@ -35,10 +35,18 @@ function setNewgMeme(idx){
         lines: [
             {
                 text: 'Meme me',
-                size: 30,
+                size: 25,
                 align: 'center',
                 color: 'white'
             }
         ]
     }
+}
+
+function changeFontSize(sign){
+    const lines = gMeme.lines;
+    lines.forEach(line => {
+        line.size += sign;
+    });
+    
 }

@@ -13,25 +13,53 @@
         <h1>UltiMeme</h1>
     </header>
 
+    <main class="main-content main-layout flex center space-between">
+        <canvas width="270" height="270" style="border: 1px solid black;"></canvas>
+        <section class="main-controls flex center column">
+            <input class="meme-text" type="text" onkeyup="textOnCanvas(this)">
+            <div class="switch-add-delete flex justify-center">
+                <button class="switch flex align-center justify-center">
+                    <img  src="img/icons/up-and-downarrows.png">
+                </button>
+                <button class="add flex align-center justify-center">
+                    <img  src="img/icons/add.png">
+                </button>
+                <button class="delete flex align-center justify-center">
+                    <img  src="img/icons/trash.png">
+                </button>
+            </div>
+            <div class="font-size-align flex justify-center">
+                <button class="inc-fon flex align-center justify-center" onclick="onIncreaseFont()">
+                    <img  src="img/icons/increase font - icon.png">
+                </button>
+                <button class="dec-font flex align-center justify-center" onclick="onDecreaseFont()">
+                    <img  src="img/icons/decrease font - icon.png">
+                </button>
+                <button class="left-align flex align-center justify-center">
+                    <img  src="img/icons/align-to-left.png">
+                </button>
+                <button class="center-align flex align-center justify-center">
+                    <img  src="img/icons/center-text-alignment.png">
+                </button>
+                <button class="right-align flex align-center justify-center">
+                    <img  src="img/icons/align-to-right.png">
+                </button>
+            </div>
+        </section>
+    </main>
+
     <section class="serch-bar main-layout">
         <h2>search keyword</h2>
     </section>
 
 
     <section class="main-gallery main-layout">
-        <img onclick="onChooseImg(this)" data-name="1" class="pic img-1" src="meme-imgs-square/1.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="2" class="pic img-2" src="meme-imgs-square/2.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="3" class="pic img-3" src="meme-imgs-square/3.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="4" class="pic img-4" src="meme-imgs-square/4.jpg"></div>
+        <img onclick="onChooseImg(this)" data-name="1" class="pic img-1" src="img/meme-imgs-square/1.jpg"></div>
+        <img onclick="onChooseImg(this)" data-name="2" class="pic img-2" src="img/meme-imgs-square/2.jpg"></div>
+        <img onclick="onChooseImg(this)" data-name="3" class="pic img-3" src="img/meme-imgs-square/3.jpg"></div>
+        <img onclick="onChooseImg(this)" data-name="4" class="pic img-4" src="img/meme-imgs-square/4.jpg"></div>
         
     </section>
-
-    <main class="main-content main-layout flex center space-between">
-        <canvas width="270" height="270" style="border: 1px solid black;"></canvas>
-        <section class="main-controls">
-            <input class="meme-text" type="text" onkeyup="textOnCanvas(this)">
-        </section>
-    </main>
 
     <footer></footer>
 

@@ -46,7 +46,28 @@ header {
 .main-controls {
     width: 270px;
     height: 270px;
-    background-color: aliceblue;
+    padding: 20px;
+}
+
+.meme-text{
+    border: none;
+    height: 30px;
+}
+
+.switch-add-delete, .font-size-align{
+    padding: 10px;
+    gap: 10px;
+}
+
+.switch-add-delete > button, .font-size-align > button{
+    height: 30px;
+    width: 30px;
+}
+
+.switch-add-delete > button > img, .font-size-align > button > img{
+    object-fit: cover;
+    height: 19px;
+    object-position: center;
 }
 
 /* HELPERS */
@@ -61,8 +82,16 @@ header {
     align-items: center;
 }
 
+.flex.justify-center {
+    justify-content: center;
+}
+
 .flex.space-between {
     justify-content: space-between;
+}
+
+.flex.column{
+    flex-direction: column;
 }
 
 /* list helpers */
