@@ -7,7 +7,7 @@
     <title>UltiMeme</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body onload="init()">
     
     <header class="main-layout">
         <h1>UltiMeme</h1>
@@ -18,13 +18,12 @@
     </section>
 
     <section class="main-gallery main-layout">
-        
+
     </section>
 
     <main class="main-content main-layout flex center space-between">
-        <canvas width="270" height="270"></canvas>
+        <canvas width="270" height="270" style="border: 1px solid black;"></canvas>
         <section class="main-controls"></section>
-
     </main>
 
     <footer></footer>
