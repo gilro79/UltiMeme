@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0 auto;
+}
+
+
+/* LAYOUT */
+
+.main-layout {
+    /* margin-left: 20px;
+    margin-right: 20px; */
+    width: 800px;
+    margin: auto;
+}
+
+/* COMPONENTS */
+
+header{
+    padding: 0 1.56rem 0 1.56rem;
+}
+
+
+.main-content{
+    background-color: #e3e3e3;
+    padding: 13px 25.5px;
+}
+
+.main-controls{
+    width: 350px;
+    height: 300px;
+    background-color: aliceblue;
+}
+
+
+
+
+
+
+/* HELPERS */
+
+/* flex */
+
+.flex {
+    display: flex;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+/* list helpers */
+
+.clean-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
