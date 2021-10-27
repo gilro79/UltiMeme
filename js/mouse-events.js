@@ -1,5 +1,8 @@
 'use strict'
-
+var gIsOnText = false;
+var gIsDown = false;
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
+var gStartPos;
 function addListeners() {
     addMouseListeners()
     addTouchListeners()
@@ -23,28 +26,35 @@ function addTouchListeners() {
 
 function onDown(ev) {
     gIsDown = true;
+    var { offsetX, offsetY } = ev;
+    const lines = getLines();
+    lines.forEach((line, idx) => {
+        const { yMin, yMax } = getYRange(idx);
+        if (offsetX > 5 && offsetX < 260 && offsetY > yMin && offsetY < yMax) {
+            gIsOnText = true;
+            document.querySelector('canvas').style.cursor = 'grabbing';
+            switchFocus(idx);
+            const pos = getEvPos(ev);
+            gStartPos = pos;
+        }
+        
+    });
 
 }
-function onMove(ev) {
-    if (gIsDown) {
-        var { offsetX, offsetY, movementX, movementY } = ev;
-        if (!offsetX) {
-            var { pageX, pageY } = ev.changedTouches[0];
-            var { offsetLeft, offsetTop } = ev.changedTouches[0].target;
-            offsetX = pageX - offsetLeft;
-            offsetY = pageY - offsetTop;
-            size = 40;
-            renderShape(offsetX, offsetY, size);
-            return;
-        }
-        var movement = Math.sqrt(movementX ** 2 + movementY ** 2);
-        var size = 30 + 120 * movement / 200;
-        renderShape(offsetX, offsetY, size);
+function onMove(ev) {  
+    if (gIsDown && gIsOnText) {
+        const pos = getEvPos(ev);
+        const dx = pos.x - gStartPos.x;
+        const dy = pos.y - gStartPos.y;
+        gStartPos = pos;
+        moveLine(dx,dy);
     }
 }
 
 function onUp() {
     gIsDown = false;
+    gIsOnText = false;
+    document.querySelector('canvas').style.cursor = 'grab';
 }
 
 function resizeCanvas() {
