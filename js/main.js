@@ -88,6 +88,8 @@ function textOnCanvas(el) {
 }
 
 function onChooseImg(el) {
+    document.querySelector('.main-rapper').hidden = false;
+    document.querySelector('.search-gallery').hidden = true;
     const imgIdx = el.dataset.name;
     setNewgMeme(imgIdx);
     getTextToInput();

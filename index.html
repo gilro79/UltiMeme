@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,79 +8,91 @@
     <title>UltiMeme</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body onload="init()">
-    
-    <header class="main-layout">
-        <h1>UltiMeme</h1>
+
+    <header class="main-layout flex space-between">
+        <div class="logo flex align-center"><img src="img/logo/Layer 2.png" alt=""></div>
+        <nav class="flex align-end">
+            <ul class="clean-list flex align-end">
+                <li><a class="gallery-li" href="#">gallery</a></li>
+                <li><a href="#">about</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <main class="main-content main-layout flex center space-between">
-        <canvas width="270" height="270"></canvas>
-        <section class="main-controls flex center column">
-            <input class="meme-text" type="text" onkeyup="textOnCanvas(this)">
-            <div class="switch-add-delete flex justify-center">
-                <button class="switch flex align-center justify-center" onclick="onSwitchLine()">
-                    <img  src="img/icons/up-and-downarrows.png">
-                </button>
-                <button class="add flex align-center justify-center" onclick="onAddLine()">
-                    <img  src="img/icons/add.png">
-                </button>
-                <button class="delete flex align-center justify-center" onclick="onDeleteLine()">
-                    <img  src="img/icons/trash.png">
-                </button>
-            </div>
-            <div class="font-size-align flex justify-center">
-                <button class="inc-fon flex align-center justify-center" onclick="onIncreaseFont()">
-                    <img  src="img/icons/increase font - icon.png">
-                </button>
-                <button class="dec-font flex align-center justify-center" onclick="onDecreaseFont()">
-                    <img  src="img/icons/decrease font - icon.png">
-                </button>
-                <button class="left-align flex align-center justify-center">
-                    <img  src="img/icons/align-to-left.png">
-                </button>
-                <button class="center-align flex align-center justify-center">
-                    <img  src="img/icons/center-text-alignment.png">
-                </button>
-                <button class="right-align flex align-center justify-center">
-                    <img  src="img/icons/align-to-right.png">
-                </button>
-            </div>
+    <div class="main-rapper" hidden>
+        <main class="main-content main-layout flex center space-between">
+            <canvas width="270" height="270"></canvas>
+            <section class="main-controls flex center column">
+                <input class="meme-text" type="text" onkeyup="textOnCanvas(this)">
+                <div class="switch-add-delete flex justify-center">
+                    <button class="switch flex align-center justify-center" onclick="onSwitchLine()">
+                        <img src="img/icons/up-and-downarrows.png">
+                    </button>
+                    <button class="add flex align-center justify-center" onclick="onAddLine()">
+                        <img src="img/icons/add.png">
+                    </button>
+                    <button class="delete flex align-center justify-center" onclick="onDeleteLine()">
+                        <img src="img/icons/trash.png">
+                    </button>
+                </div>
+                <div class="font-size-align flex justify-center">
+                    <button class="inc-fon flex align-center justify-center" onclick="onIncreaseFont()">
+                        <img src="img/icons/increase font - icon.png">
+                    </button>
+                    <button class="dec-font flex align-center justify-center" onclick="onDecreaseFont()">
+                        <img src="img/icons/decrease font - icon.png">
+                    </button>
+                    <button class="left-align flex align-center justify-center">
+                        <img src="img/icons/align-to-left.png">
+                    </button>
+                    <button class="center-align flex align-center justify-center">
+                        <img src="img/icons/center-text-alignment.png">
+                    </button>
+                    <button class="right-align flex align-center justify-center">
+                        <img src="img/icons/align-to-right.png">
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <section class="search-gallery">
+        <section class="search-bar main-layout">
+            <h2>search keyword</h2>
         </section>
-    </main>
+        <section class="main-gallery main-layout">
+            <img onclick="onChooseImg(this)" data-name="1" class="pic img-1" src="img/meme-imgs-square/1.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="2" class="pic img-2" src="img/meme-imgs-square/2.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="3" class="pic img-3" src="img/meme-imgs-square/3.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="4" class="pic img-4" src="img/meme-imgs-square/4.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="5" class="pic img-5" src="img/meme-imgs-square/5.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="6" class="pic img-6" src="img/meme-imgs-square/6.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="7" class="pic img-7" src="img/meme-imgs-square/7.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="8" class="pic img-8" src="img/meme-imgs-square/8.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="9" class="pic img-9" src="img/meme-imgs-square/9.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="10" class="pic img-10" src="img/meme-imgs-square/10.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="11" class="pic img-11" src="img/meme-imgs-square/11.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="12" class="pic img-12" src="img/meme-imgs-square/12.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="13" class="pic img-13" src="img/meme-imgs-square/13.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="14" class="pic img-14" src="img/meme-imgs-square/14.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="15" class="pic img-15" src="img/meme-imgs-square/15.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="16" class="pic img-16" src="img/meme-imgs-square/16.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="17" class="pic img-17" src="img/meme-imgs-square/17.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="18" class="pic img-18" src="img/meme-imgs-square/18.jpg"></div>
 
-    <section class="serch-bar main-layout">
-        <h2>search keyword</h2>
+        </section>
     </section>
 
+    <footer class="main-layout flex column align-center justify-center">
+        <div class="logo flex align-center"><img src="img/logo/Layer 2.png" alt=""></div>
+        <div class="all-rights">all rights reserved 2019</div>
 
-    <section class="main-gallery main-layout">
-        <img onclick="onChooseImg(this)" data-name="1" class="pic img-1" src="img/meme-imgs-square/1.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="2" class="pic img-2" src="img/meme-imgs-square/2.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="3" class="pic img-3" src="img/meme-imgs-square/3.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="4" class="pic img-4" src="img/meme-imgs-square/4.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="5" class="pic img-5" src="img/meme-imgs-square/5.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="6" class="pic img-6" src="img/meme-imgs-square/6.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="7" class="pic img-7" src="img/meme-imgs-square/7.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="8" class="pic img-8" src="img/meme-imgs-square/8.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="9" class="pic img-9" src="img/meme-imgs-square/9.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="10" class="pic img-10" src="img/meme-imgs-square/10.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="11" class="pic img-11" src="img/meme-imgs-square/11.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="12" class="pic img-12" src="img/meme-imgs-square/12.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="13" class="pic img-13" src="img/meme-imgs-square/13.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="14" class="pic img-14" src="img/meme-imgs-square/14.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="15" class="pic img-15" src="img/meme-imgs-square/15.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="16" class="pic img-16" src="img/meme-imgs-square/16.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="17" class="pic img-17" src="img/meme-imgs-square/17.jpg"></div>
-        <img onclick="onChooseImg(this)" data-name="18" class="pic img-18" src="img/meme-imgs-square/18.jpg"></div>
-        
-    </section>
-
-    <footer></footer>
+    </footer>
 
 
     <script src="js/main.js"></script>
     <script src="js/mouse-events.js"></script>
     <script src="js/meme-service.js"></script>
 </body>
+
 </html>

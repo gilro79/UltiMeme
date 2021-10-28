@@ -2,8 +2,29 @@
     box-sizing: border-box;
 }
 
+/* TYPOGRAPHY */
+
+@font-face {
+    font-family: montserrat;
+    src: url(/fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+html {
+    font-family: montserrat, serif;
+    font-size: 10px;
+}
+
 body {
     margin: 0 auto;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 /* LAYOUT */
@@ -21,24 +42,36 @@ body {
 
 header {
     padding: 0 1.56rem 0 1.56rem;
+    background-color: #ff7f00;
+    height: 33px;
 }
 
-/* GALLERY */
-
-.main-gallery .pic{
+.logo img {
     object-fit: cover;
-    height: 197px;
-    cursor: pointer;
+    height: 11px;
 }
 
-/* .img-1 {
-    object-fit: cover;
-    height: 100px;
-} */
+nav ul {
+    gap: 10px;
+}
+
+nav ul li {
+    height: 23px;
+    text-transform: capitalize;
+    line-height: 1.2em;
+    letter-spacing: normal;
+    color: #fff;
+}
+
+.gallery-li{
+    color: #000;
+    height: 100%;
+}
+
 
 /* MEME EDITOR */
 
-canvas{
+canvas {
     cursor: grab;
 }
 
@@ -53,25 +86,57 @@ canvas{
     padding: 20px;
 }
 
-.meme-text{
+.meme-text {
     border: none;
     height: 30px;
 }
 
-.switch-add-delete, .font-size-align{
+.switch-add-delete, .font-size-align {
     padding: 10px;
     gap: 10px;
 }
 
-.switch-add-delete > button, .font-size-align > button{
+.switch-add-delete>button, .font-size-align>button {
     height: 30px;
     width: 30px;
 }
 
-.switch-add-delete > button > img, .font-size-align > button > img{
+.switch-add-delete>button>img, .font-size-align>button>img {
     object-fit: cover;
     height: 19px;
     object-position: center;
+}
+
+/* SEARCH BAR */
+
+.search-bar {
+    background-color: #ffffff;
+}
+
+/* GALLERY */
+
+.main-gallery{
+    background-color: #e3e3e3;
+    padding: 13.5px 20px;
+}
+
+.main-gallery .pic {
+    object-fit: cover;
+    height: 176px;
+    margin: 3px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+
+footer{
+    height: 103.5px;
+    background-color: #ff7f00;
+}
+
+.all-rights{
+    color: #fff;
+    font-weight: 100;
 }
 
 /* HELPERS */
@@ -86,6 +151,10 @@ canvas{
     align-items: center;
 }
 
+.flex.align-end {
+    align-items: flex-end;
+}
+
 .flex.justify-center {
     justify-content: center;
 }
@@ -94,9 +163,10 @@ canvas{
     justify-content: space-between;
 }
 
-.flex.column{
+.flex.column {
     flex-direction: column;
 }
+
 
 /* list helpers */
 
