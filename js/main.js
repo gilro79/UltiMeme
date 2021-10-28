@@ -26,7 +26,7 @@ function drawImgFromlocal() {
     }
 }
 
-function renderGallery(){
+function renderGallery() {
     var imgs = getGImgs();
 
     var strHtmls = imgs.map(function (img) {
@@ -53,7 +53,7 @@ function renderText() {
     const lines = getLines();
     lines.forEach(line => {
         const { xPos, yPos, text, size, align, color } = line;
-        drawText( xPos,yPos, text, size, align, color);
+        drawText(xPos, yPos, text, size, align, color);
     });
 }
 
@@ -61,7 +61,7 @@ function renderRect() {
     const idx = getLineIndex();
     const line = getLines()[idx];
     const x = 5;
-    let {size , yPos} = line;
+    let { size, yPos } = line;
     const y = yPos - size;
     const xEnd = gElCanvas.width - 10;
     const yEnd = size + 7;
@@ -77,7 +77,7 @@ function renderRect() {
     gCtx.stroke();
 }
 
-function drawText( xPos,yPos, text, size, align, color) {
+function drawText(xPos, yPos, text, size, align, color) {
     gCtx.beginPath();
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = 'black';
@@ -105,7 +105,7 @@ function onChooseImg(el) {
     renderCanvas();
 }
 
-function onGoToGallery(){
+function onGoToGallery() {
     document.querySelector('.main-rapper').hidden = true;
     document.querySelector('.search-gallery').hidden = false;
     document.querySelector('.gallery-li').classList.add('selected');
@@ -113,7 +113,7 @@ function onGoToGallery(){
     document.body.classList.remove('menu-open');
 }
 
-function replaceSections(){
+function replaceSections() {
     document.querySelector('.main-rapper').hidden = false;
     document.querySelector('.search-gallery').hidden = true;
     document.querySelector('.gallery-li').classList.remove('selected');
@@ -121,7 +121,7 @@ function replaceSections(){
 
 }
 
-function onMoveLine(){
+function onMoveLine() {
     renderCanvas();
 }
 
@@ -155,9 +155,19 @@ function onDeleteLine() {
     renderCanvas();
 }
 
-function onSwitchFocus(){
+function onSwitchFocus() {
     getTextToInput();
     renderCanvas();
+}
+
+function onDownload(elLink) {
+    console.log('in downlaod');
+    var imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
+}
+
+function closeModal(){
+    document.querySelector('.share-modal-rapper').hidden = true;
 }
 
 function toggleMenu() {

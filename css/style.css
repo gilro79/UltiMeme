@@ -87,6 +87,7 @@ canvas {
 .main-content {
     background-color: #e3e3e3;
     padding: 13px 25.5px;
+    position: relative;
 }
 
 .main-controls {
@@ -116,17 +117,39 @@ canvas {
     object-position: center;
 }
 
-.download-share button{
+.download-share a, .share-modal a {
     background-color: #ff7f00;
     color: white;
     padding: 10px 10px;
     border-radius: 5px;
-
+    font-size: 1.2rem;
 }
 
-.download-share button:hover{
+.download-share a:hover, .share-modal a:hover {
     background-color: #d36900;
+}
 
+.share-modal {
+    height: 140px;
+    width: 231px;
+    position: absolute;
+    background-color: #ffffff;
+    top: 112px;
+    right: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    gap: 37px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: default;
 }
 
 /* SEARCH BAR */
@@ -139,7 +162,7 @@ canvas {
 
 .main-gallery {
     background-color: #e3e3e3;
-    padding: 13.5px 20px;
+    padding: 13.5px 26px;
 }
 
 .main-gallery .pic {
@@ -195,7 +218,7 @@ footer {
 
 /* buttons helpers */
 
-.clean-btn{
+.clean-btn {
     background-color: unset;
     border: unset;
 }
@@ -213,6 +236,9 @@ footer {
         width: 350px;
         margin: auto;
     }
+    nav {
+        position: relative;
+    }
     nav ul {
         display: none;
     }
@@ -225,7 +251,8 @@ footer {
         gap: unset;
         height: 90px;
         width: 100px;
-        right: 95px;
+        right: 0;
+        border-radius: 5px;
         font-size: 2rem;
         justify-content: space-evenly;
         align-items: center;

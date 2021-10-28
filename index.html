@@ -16,7 +16,7 @@
         <nav class="flex align-end">
             <button class="btn-menu" onclick="toggleMenu()"></button>
             <ul class="clean-list align-end">
-            <!-- <ul class="clean-list flex align-end"> -->
+                <!-- <ul class="clean-list flex align-end"> -->
                 <li class="gallery-li selected"><a onclick="onGoToGallery()" class="gallery-a" href="#">gallery</a></li>
                 <li><a href="#">about</a></li>
             </ul>
@@ -56,9 +56,16 @@
                     </button>
                 </div>
                 <div class="download-share flex space-even">
-                    <button class="download clean-btn" onclick="onDownload()">Download</button>
-                    <button class="share clean-btn" onclick="onShare()">Share</button>
-                    <button class="save clean-btn" onclick="onSave()">Save</button>
+                    <a href="#" class="download" onclick="onDownload(this)" download="my-img.jpg">Download</a>
+                    <a href="#" class="Upload" onclick="uploadImg()">Upload</a>
+                    <a href="#" class="save" onclick="onSave()">Save</a>
+                </div>
+                <div class="share-modal-rapper" hidden>
+                    <div class="share-modal" hidden>
+                        <div class="close-modal" onclick="closeModal()">X</div>
+                        <div class="user-msg"></div>
+                        <div class="share-container"></div>
+                    </div>
                 </div>
             </section>
         </main>
@@ -100,6 +107,7 @@
     <script src="js/main.js"></script>
     <script src="js/mouse-events.js"></script>
     <script src="js/meme-service.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/meme-utils.js"></script>
 </body>
 
