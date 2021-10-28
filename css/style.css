@@ -54,6 +54,7 @@ header {
 nav ul {
     gap: 10px;
     display: flex;
+    z-index: 1;
 }
 
 nav ul li {
@@ -156,6 +157,12 @@ canvas {
 
 .search-bar {
     background-color: #ffffff;
+    height: 30px;
+}
+
+.img-search{
+    border: none;
+    border-bottom: 1px solid black;
 }
 
 /* GALLERY */

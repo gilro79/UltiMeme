@@ -1,5 +1,6 @@
 'use strict'
-var gImg = [];
+var gImgs = [];
+var gFilterSearchBy;
 
 var gImgQty = 18;
 var gKeyWords = ['happy', 'ironic', 'sad', 'dramatic', 'angry', 'beautiful', 'annoying', 'bad']
@@ -10,15 +11,24 @@ var gMeme = {
 
 };
 
-
-function getGImgs() {
-    var imgs = [];
+// setting the first imgs on init
+function setGImgs() {
     for (let i = 0; i < gImgQty; i++) {
         var img = {};
         img.id = i + 1;
         img.url = `img/meme-imgs-square/${i + 1}.jpg`;
         img.keywords = getRandKeyWords();
-        imgs.push(img);
+        gImgs.push(img);
+    }
+}
+
+function getImgs() {
+    var imgs = gImgs;
+
+    if (gFilterSearchBy) {
+        imgs = gImgs.filter(function (img) {
+            return img.keywords.join().includes(gFilterSearchBy)
+        })
     }
     return imgs;
 }
@@ -115,4 +125,8 @@ function deleteLine() {
     const idx = gMeme.lineIndex;
     gMeme.lines.splice(idx, 1);
     gMeme.lineIndex = 0;
+}
+
+function filterImgs(searchText) {
+    gFilterSearchBy = searchText;
 }

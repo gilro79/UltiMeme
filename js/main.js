@@ -3,10 +3,13 @@
 
 var gElCanvas;
 var gCtx;
+var gIsRendRect = true;
+var gElLink;
 
 function init() {
     gElCanvas = document.querySelector('canvas');
     gCtx = gElCanvas.getContext('2d');
+    setGImgs();
     // resizeCanvas()
     addListeners()
     // getTextToInput();
@@ -21,16 +24,18 @@ function drawImgFromlocal() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
         // if(gIsOnText && gIsDown) 
-        renderRect();
+        if (gIsRendRect) renderRect();
+
         renderText();
+        gIsRendRect = true;
     }
 }
 
 function renderGallery() {
-    var imgs = getGImgs();
+    var imgs = getImgs();
 
     var strHtmls = imgs.map(function (img) {
-        return `<img onclick="onChooseImg(this)" data-name="${img.id}" class="pic img-${img.id}" src="${img.url}"></div>`
+        return `<img onclick="onChooseImg(this)" data-name="${img.id}" class="pic img-${img.id}" src="${img.url}" title="${img.keywords}"></div>`
     })
     document.querySelector('.main-gallery').innerHTML = strHtmls.join('');
 }
@@ -160,13 +165,23 @@ function onSwitchFocus() {
     renderCanvas();
 }
 
-function onDownload(elLink) {
-    console.log('in downlaod');
-    var imgContent = gElCanvas.toDataURL('image/jpeg')
-    elLink.href = imgContent
+function onSearchImg(){
+    var elSearch = document.querySelector('.img-search');
+    const searchText = elSearch.value;
+    // if(!searchText) return;
+    filterImgs(searchText);
+    renderGallery();
 }
 
-function closeModal(){
+function onDownload(elLink) {
+    gIsRendRect = false;
+    gElLink = elLink;
+    renderCanvas();
+    var imgContent = gElCanvas.toDataURL('image/jpeg');
+    gElLink.href = imgContent;
+}
+
+function closeModal() {
     document.querySelector('.share-modal-rapper').hidden = true;
 }
 
