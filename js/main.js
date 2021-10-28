@@ -9,8 +9,9 @@ function init() {
     gCtx = gElCanvas.getContext('2d');
     // resizeCanvas()
     addListeners()
-    getTextToInput();
-    renderCanvas();
+    // getTextToInput();
+    // renderCanvas();
+    renderGallery();
 }
 
 function drawImgFromlocal() {
@@ -23,6 +24,15 @@ function drawImgFromlocal() {
         renderRect();
         renderText();
     }
+}
+
+function renderGallery(){
+    var imgs = getGImgs();
+
+    var strHtmls = imgs.map(function (img) {
+        return `<img onclick="onChooseImg(this)" data-name="${img.id}" class="pic img-${img.id}" src="${img.url}"></div>`
+    })
+    document.querySelector('.main-gallery').innerHTML = strHtmls.join('');
 }
 
 function getTextToInput() {
@@ -88,12 +98,27 @@ function textOnCanvas(el) {
 }
 
 function onChooseImg(el) {
-    document.querySelector('.main-rapper').hidden = false;
-    document.querySelector('.search-gallery').hidden = true;
+    replaceSections();
     const imgIdx = el.dataset.name;
     setNewgMeme(imgIdx);
     getTextToInput();
     renderCanvas();
+}
+
+function onGoToGallery(){
+    document.querySelector('.main-rapper').hidden = true;
+    document.querySelector('.search-gallery').hidden = false;
+    document.querySelector('.gallery-li').classList.add('selected');
+    document.querySelector('.gallery-a').style.color = 'black';
+    document.body.classList.remove('menu-open');
+}
+
+function replaceSections(){
+    document.querySelector('.main-rapper').hidden = false;
+    document.querySelector('.search-gallery').hidden = true;
+    document.querySelector('.gallery-li').classList.remove('selected');
+    document.querySelector('.gallery-a').style.color = 'white';
+
 }
 
 function onMoveLine(){
@@ -133,4 +158,8 @@ function onDeleteLine() {
 function onSwitchFocus(){
     getTextToInput();
     renderCanvas();
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
 }

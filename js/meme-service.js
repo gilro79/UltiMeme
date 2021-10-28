@@ -1,11 +1,35 @@
 'use strict'
+var gImg = [];
 
-
+var gImgQty = 18;
+var gKeyWords = ['happy', 'ironic', 'sad', 'dramatic', 'angry', 'beautiful', 'annoying', 'bad']
 var gMeme = {
     imgId: 3,
     lineIndex: 0,
     lines: [createLine()]
 
+};
+
+
+function getGImgs() {
+    var imgs = [];
+    for (let i = 0; i < gImgQty; i++) {
+        var img = {};
+        img.id = i + 1;
+        img.url = `img/meme-imgs-square/${i + 1}.jpg`;
+        img.keywords = getRandKeyWords();
+        imgs.push(img);
+    }
+    return imgs;
+}
+
+function getRandKeyWords() {
+    var keyWords = [];
+    for (let i = 0; i < 2; i++) {
+        let keyWord = gKeyWords[getRandomInt(0, 8)]
+        keyWords.push(keyWord);
+    }
+    return keyWords;
 }
 
 function setNewgMeme(idx) {

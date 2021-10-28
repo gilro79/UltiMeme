@@ -14,8 +14,10 @@
     <header class="main-layout flex space-between">
         <div class="logo flex align-center"><img src="img/logo/Layer 2.png" alt=""></div>
         <nav class="flex align-end">
-            <ul class="clean-list flex align-end">
-                <li><a class="gallery-li" href="#">gallery</a></li>
+            <button class="btn-menu" onclick="toggleMenu()"></button>
+            <ul class="clean-list align-end">
+            <!-- <ul class="clean-list flex align-end"> -->
+                <li class="gallery-li selected"><a onclick="onGoToGallery()" class="gallery-a" href="#">gallery</a></li>
                 <li><a href="#">about</a></li>
             </ul>
         </nav>
@@ -53,6 +55,11 @@
                         <img src="img/icons/align-to-right.png">
                     </button>
                 </div>
+                <div class="download-share flex space-even">
+                    <button class="download clean-btn" onclick="onDownload()">Download</button>
+                    <button class="share clean-btn" onclick="onShare()">Share</button>
+                    <button class="save clean-btn" onclick="onSave()">Save</button>
+                </div>
             </section>
         </main>
     </div>
@@ -61,7 +68,7 @@
             <h2>search keyword</h2>
         </section>
         <section class="main-gallery main-layout">
-            <img onclick="onChooseImg(this)" data-name="1" class="pic img-1" src="img/meme-imgs-square/1.jpg"></div>
+            <!-- <img onclick="onChooseImg(this)" data-name="1" class="pic img-1" src="img/meme-imgs-square/1.jpg"></div>
             <img onclick="onChooseImg(this)" data-name="2" class="pic img-2" src="img/meme-imgs-square/2.jpg"></div>
             <img onclick="onChooseImg(this)" data-name="3" class="pic img-3" src="img/meme-imgs-square/3.jpg"></div>
             <img onclick="onChooseImg(this)" data-name="4" class="pic img-4" src="img/meme-imgs-square/4.jpg"></div>
@@ -78,7 +85,7 @@
             <img onclick="onChooseImg(this)" data-name="15" class="pic img-15" src="img/meme-imgs-square/15.jpg"></div>
             <img onclick="onChooseImg(this)" data-name="16" class="pic img-16" src="img/meme-imgs-square/16.jpg"></div>
             <img onclick="onChooseImg(this)" data-name="17" class="pic img-17" src="img/meme-imgs-square/17.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="18" class="pic img-18" src="img/meme-imgs-square/18.jpg"></div>
+            <img onclick="onChooseImg(this)" data-name="18" class="pic img-18" src="img/meme-imgs-square/18.jpg"></div> -->
 
         </section>
     </section>
@@ -93,6 +100,7 @@
     <script src="js/main.js"></script>
     <script src="js/mouse-events.js"></script>
     <script src="js/meme-service.js"></script>
+    <script src="js/meme-utils.js"></script>
 </body>
 
 </html>
