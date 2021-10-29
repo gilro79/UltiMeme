@@ -20,20 +20,22 @@ function init() {
 function drawImgFromlocal() {
     var img = new Image();
     const imgId = getImgId();
+    const line = getLine();
     img.src = `img/meme-imgs-square/${imgId}.jpg`;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
         // if(gIsOnText && gIsDown) 
-        if (gIsRendRect) renderRect();
-
+        if (gIsRendRect) {
+            renderRect();
+        }
         renderText();
         gIsRendRect = true;
+
     }
 }
 
 function renderGallery() {
     var imgs = getImgs();
-
     var strHtmls = imgs.map(function (img) {
         return `<img onclick="onChooseImg(this)" data-name="${img.id}" class="pic img-${img.id}" src="${img.url}" title="${img.keywords}"></div>`
     })
@@ -57,19 +59,38 @@ function renderCanvas() {
 function renderText() {
     const lines = getLines();
     lines.forEach(line => {
-        const { xPos, yPos, text, size, align, color } = line;
-        drawText(xPos, yPos, text, size, align, color);
+        // debugger;
+        const { xPos, yPos, text, size, align, color, type } = line;
+        if (type === 'sticker') {
+            renderSticker(line);
+        } else {
+            drawText(xPos, yPos, text, size, align, color);
+        }
     });
 }
 
+function renderSticker(line) {
+    // const line = getLine();
+    const { xPos, yPos, text, size, align, color, type } = line;
+    gCtx.beginPath();
+    const elImg = document.querySelector(`.${line.stickerId}`);
+    gCtx.drawImage(elImg, xPos - 25, yPos - 25, 50, 50)
+}
+
 function renderRect() {
-    const idx = getLineIndex();
-    const line = getLines()[idx];
-    const x = 5;
-    let { size, yPos } = line;
-    const y = yPos - size;
-    const xEnd = gElCanvas.width - 10;
-    const yEnd = size + 7;
+    const line = getLine();
+    if (line.type === 'text') {
+        var x = 5;
+        let { size, yPos } = line;
+        var y = yPos - size;
+        var xEnd = gElCanvas.width - 10;
+        var yEnd = size + 7;
+    } else {
+        var x = line.xPos - 30;
+        var y = line.yPos - 30;
+        var xEnd = 60;
+        var yEnd = 60;
+    }
 
     gCtx.beginPath();
     gCtx.rect(x, y, xEnd, yEnd);
@@ -148,6 +169,13 @@ function onAddLine() {
     getTextToInput();
 }
 
+function onAddSticker(el) {
+    // console.log(el.classList[0]);
+    const stickerId = el.classList[0];
+    addSticker(stickerId);
+    renderCanvas();
+}
+
 function onSwitchLine() {
     switchLine();
     getTextToInput();
@@ -165,12 +193,45 @@ function onSwitchFocus() {
     renderCanvas();
 }
 
-function onSearchImg(){
+function onSearchImg() {
     var elSearch = document.querySelector('.img-search');
     const searchText = elSearch.value;
-    // if(!searchText) return;
     filterImgs(searchText);
     renderGallery();
+}
+
+function onSearchClear() {
+    setTimeout(() => {
+        onSearchImg();
+    }, 10);
+}
+
+function searchThis(el) {
+    const searchWord = el.innerText;
+    const searchInput = document.querySelector('.img-search');
+    searchInput.value = searchWord;
+    onSearchImg();
+    searchWordFontInc(el);
+}
+
+function searchWordFontInc(el) {
+    const initialFontSize = 10;
+    const keyWord = el.innerText;
+    const clickNumber = getClickNumber(keyWord);
+    let fontSize = initialFontSize + clickNumber + 'px';
+    if (fontSize > '40px') return;
+    el.style.fontSize = fontSize;
+}
+
+function toggleMoreSearchWords() {
+    let el = document.querySelector('.more-words-rapper').hidden;
+    el = !el;
+    document.querySelector('.more-words-rapper').hidden = el;
+    if (el) {
+        document.querySelector('.more-li').innerText = 'more'
+    } else {
+        document.querySelector('.more-li').innerText = 'less'
+    }
 }
 
 function onDownload(elLink) {

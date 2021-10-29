@@ -28,7 +28,7 @@ function onDown(ev) {
     gIsDown = true;
     var { offsetX, offsetY } = ev;
     const lines = getLines();
-    lines.forEach((line, idx) => {
+    lines.forEach((line, idx) => {       // fix the x range for the stickers!
         const { yMin, yMax } = getYRange(idx);
         if (offsetX > 5 && offsetX < 260 && offsetY > yMin && offsetY < yMax) {
             gIsOnText = true;

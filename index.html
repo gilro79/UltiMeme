@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UltiMeme</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 
 <body onload="init()">
@@ -18,7 +19,9 @@
             <ul class="clean-list align-end">
                 <!-- <ul class="clean-list flex align-end"> -->
                 <li class="gallery-li selected"><a onclick="onGoToGallery()" class="gallery-a" href="#">gallery</a></li>
+                <li><a href="#">memes</a></li>
                 <li><a href="#">about</a></li>
+                <i class="fa fa-camera-retro"></i>
             </ul>
         </nav>
     </header>
@@ -55,6 +58,12 @@
                         <img src="img/icons/align-to-right.png">
                     </button>
                 </div>
+                <div class="stickers">
+                    <img src="img/stickers/1.png" class="stic-1" onclick="onAddSticker(this)">
+                    <!-- <img src="img/stickers/1.png" class="stic-1" data-url="img/stickers/agrr.png" onclick="onAddSticker(this)"> -->
+                    <img src="img/stickers/2.png" class="stic-2" data-url="img/stickers/cat.png" onclick="onAddSticker(this)">
+                    <img src="img/stickers/3.png" class="stic-3" data-url="img/stickers/haha.png" onclick="onAddSticker(this)">
+                </div>
                 <div class="download-share flex space-even">
                     <a href="#" class="download" onclick="onDownload(this)" download="my-img.jpg">Download</a>
                     <a href="#" class="Upload" onclick="uploadImg()">Upload</a>
@@ -71,31 +80,30 @@
         </main>
     </div>
     <section class="search-gallery">
-        <section class="search-bar main-layout">
-            <input type="text" class="img-search" name="search" placeholder="Enter search keyword"
-                onkeyup="onSearchImg()" onclick="onSearchImg()">
+        <section class="search-bar main-layout flex align-center">
+            <div class="search-area main-layout flex space-between">
+                <input type="search" class="img-search" name="search" placeholder="Enter search keyword"
+                    onkeyup="onSearchImg()" onclick="onSearchClear()">
+                <ul class="search-words flex align-center clean-list">
+                    <li onclick="searchThis(this)">happy</li>
+                    <li onclick="searchThis(this)">sad</li>
+                    <li onclick="searchThis(this)">ironic</li>
+                    <li onclick="searchThis(this)">beautiful</li>
+                    <li class="more-li" onclick="toggleMoreSearchWords()">more</li>
+                </ul>
+            </div>
         </section>
-        <section class="main-gallery main-layout">
-            <!-- <img onclick="onChooseImg(this)" data-name="1" class="pic img-1" src="img/meme-imgs-square/1.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="2" class="pic img-2" src="img/meme-imgs-square/2.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="3" class="pic img-3" src="img/meme-imgs-square/3.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="4" class="pic img-4" src="img/meme-imgs-square/4.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="5" class="pic img-5" src="img/meme-imgs-square/5.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="6" class="pic img-6" src="img/meme-imgs-square/6.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="7" class="pic img-7" src="img/meme-imgs-square/7.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="8" class="pic img-8" src="img/meme-imgs-square/8.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="9" class="pic img-9" src="img/meme-imgs-square/9.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="10" class="pic img-10" src="img/meme-imgs-square/10.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="11" class="pic img-11" src="img/meme-imgs-square/11.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="12" class="pic img-12" src="img/meme-imgs-square/12.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="13" class="pic img-13" src="img/meme-imgs-square/13.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="14" class="pic img-14" src="img/meme-imgs-square/14.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="15" class="pic img-15" src="img/meme-imgs-square/15.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="16" class="pic img-16" src="img/meme-imgs-square/16.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="17" class="pic img-17" src="img/meme-imgs-square/17.jpg"></div>
-            <img onclick="onChooseImg(this)" data-name="18" class="pic img-18" src="img/meme-imgs-square/18.jpg"></div> -->
-
-        </section>
+        <div class="more-words-rapper" hidden>
+            <div class="more-words main-layout flex justify-center">
+                <ul class="search-words flex align-center clean-list">
+                    <li onclick="searchThis(this)">dramatic</li>
+                    <li onclick="searchThis(this)">angry</li>
+                    <li onclick="searchThis(this)">annoying</li>
+                    <li onclick="searchThis(this)">bad</li>
+                </ul>
+            </div>
+        </div>
+        <section class="main-gallery main-layout"></section>
     </section>
 
     <footer class="main-layout flex column align-center justify-center">

@@ -153,16 +153,41 @@ canvas {
     cursor: default;
 }
 
+.stickers {
+    height: 68px;
+    width: 187px;
+    background-color: white;
+    align-self: center;
+    margin-bottom: 10px;
+}
+
+.stickers img {
+    object-fit: cover;
+    height: 50px;
+    margin: 3px;
+    cursor: pointer;
+}
+
 /* SEARCH BAR */
 
 .search-bar {
     background-color: #ffffff;
-    height: 30px;
+    min-height: 30px;
+    padding: 0 26px;
 }
 
-.img-search{
+.img-search {
     border: none;
     border-bottom: 1px solid black;
+}
+
+.search-words {
+    gap: 20px;
+    cursor: pointer;
+}
+
+.search-words li {
+    font-size: 1rem;
 }
 
 /* GALLERY */

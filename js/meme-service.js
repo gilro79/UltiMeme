@@ -1,7 +1,7 @@
 'use strict'
 var gImgs = [];
 var gFilterSearchBy;
-
+var gKeyWordsClicks = {};
 var gImgQty = 18;
 var gKeyWords = ['happy', 'ironic', 'sad', 'dramatic', 'angry', 'beautiful', 'annoying', 'bad']
 var gMeme = {
@@ -42,6 +42,11 @@ function getRandKeyWords() {
     return keyWords;
 }
 
+function getClickNumber(keyWord) {
+    gKeyWordsClicks[keyWord] = (gKeyWordsClicks[keyWord]) ? gKeyWordsClicks[keyWord] + 1 : 1;
+    return gKeyWordsClicks[keyWord];
+}
+
 function setNewgMeme(idx) {
     gMeme = {
         imgId: idx,
@@ -59,7 +64,9 @@ function createLine() {
         text: 'What am I doing?',
         size: 25,
         align: 'center',
-        color: 'white'
+        color: 'white',
+        type: 'text',
+        stickerId : 'not-sticker'
     }
     return line;
 }
@@ -75,6 +82,17 @@ function moveLine(dx, dy) {
 function addLine() {
     const newLine = createLine();
     newLine.yPos = (gMeme.lines.length === 1) ? 250 : 150;
+    gMeme.lines.push(newLine);
+    gMeme.lineIndex += 1;
+}
+
+function addSticker(stickerId) {
+    const newLine = createLine();
+    newLine.xPos = gElCanvas.width / 2;
+    newLine.yPos = gElCanvas.height / 2;
+    newLine.text = '';
+    newLine.type = 'sticker'
+    newLine.stickerId = stickerId;
     gMeme.lines.push(newLine);
     gMeme.lineIndex += 1;
 }
@@ -98,6 +116,10 @@ function getImgId() {
 
 function getLines() {
     return gMeme.lines;
+}
+
+function getLine(){
+    return gMeme.lines[gMeme.lineIndex];
 }
 
 function getLineIndex() {
@@ -124,7 +146,7 @@ function deleteLine() {
     if (gMeme.lineIndex === 0) return;
     const idx = gMeme.lineIndex;
     gMeme.lines.splice(idx, 1);
-    gMeme.lineIndex = 0;
+    gMeme.lineIndex -= 1;
 }
 
 function filterImgs(searchText) {
