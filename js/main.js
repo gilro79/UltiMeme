@@ -21,7 +21,7 @@ function drawImgFromlocal() {
     var img = new Image();
     const imgId = getImgId();
     const line = getLine();
-    img.src = `img/meme-imgs-square/${imgId}.jpg`;
+    img.src = `img/meme-imgs-various-aspect-ratios/${imgId}.jpg`;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
         // if(gIsOnText && gIsDown) 
@@ -45,7 +45,6 @@ function renderGallery() {
 function renderMemes(){
     var savedMemes = getSavedMemes();
     var strHtmls = savedMemes.map(function (meme) {
-        // <img src="http://ca-upload.com/here/img/617cf65e1e105.jpg" alt="">
         return `<img src="${meme}">`
     })
     document.querySelector('.memes').innerHTML = strHtmls.join('');
@@ -57,6 +56,12 @@ function getTextToInput() {
     const lines = getLines();
     const { text } = lines[idx];
     inputText.value = text;
+}
+
+function setCanvasHeight(width, height){
+    const ratio = width / height;
+    gElCanvas.height = 270 / ratio;
+
 }
 
 function renderCanvas() {
@@ -133,6 +138,9 @@ function textOnCanvas(el) {
 }
 
 function onChooseImg(el) {
+    console.log('el.width', el.width);
+    console.log('el.height', el.height);
+    setCanvasHeight(el.width, el.height);
     goToMemeEditor();
     const imgIdx = el.dataset.name;
     setNewgMeme(imgIdx);
@@ -145,7 +153,9 @@ function onGoToGallery() {
     document.querySelector('.search-gallery').hidden = false;
     document.querySelector('.memes-rapper').hidden = true;
     document.querySelector('.gallery-li').classList.add('selected');
+    document.querySelector('.memes-li').classList.remove('selected');
     document.querySelector('.gallery-a').style.color = 'black';
+    document.querySelector('.memes-a').style.color = 'white';
     document.body.classList.remove('menu-open');
     renderGallery();
 }
@@ -154,6 +164,10 @@ function onGoToMemes(){
     document.querySelector('.main-rapper').hidden = true;
     document.querySelector('.search-gallery').hidden = true;
     document.querySelector('.memes-rapper').hidden = false;
+    document.querySelector('.gallery-li').classList.remove('selected');
+    document.querySelector('.memes-li').classList.add('selected');
+    document.querySelector('.gallery-a').style.color = 'white';
+    document.querySelector('.memes-a').style.color = 'black';
     renderMemes();
 }
 
@@ -162,6 +176,7 @@ function goToMemeEditor() {
     document.querySelector('.search-gallery').hidden = true;
     document.querySelector('.memes-rapper').hidden = true;
     document.querySelector('.gallery-li').classList.remove('selected');
+    document.querySelector('.memes-li').classList.remove('selected');
     document.querySelector('.gallery-a').style.color = 'white';
 
 }

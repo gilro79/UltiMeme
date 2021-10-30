@@ -17,7 +17,7 @@ function setGImgs() {
     for (let i = 0; i < gImgQty; i++) {
         var img = {};
         img.id = i + 1;
-        img.url = `img/meme-imgs-square/${i + 1}.jpg`;
+        img.url = `img/meme-imgs-various-aspect-ratios/${i + 1}.jpg`;
         img.keywords = getRandKeyWords();
         gImgs.push(img);
     }
