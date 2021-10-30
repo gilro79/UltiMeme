@@ -42,10 +42,6 @@ function renderGallery() {
 
 function renderMemes() {
     var savedMemes = getSavedMemes();
-    // if (savedMemes.length === 0) {
-    //     document.querySelector('.memes').innerHTML = `<img src="http://ca-upload.com/here/img/617cf65e1e105.jpg" alt="">`
-    //     return;
-    // }
     var strHtmls = savedMemes.map(function (meme) {
         return `<img src="${meme}">`
     })
