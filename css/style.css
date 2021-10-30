@@ -168,6 +168,13 @@ canvas {
     cursor: pointer;
 }
 
+/* MEMES TAB */
+
+.memes img{
+    height: 140px;
+    padding: 10px;
+}
+
 /* SEARCH BAR */
 
 .search-bar {

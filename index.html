@@ -19,7 +19,7 @@
             <ul class="clean-list align-end">
                 <!-- <ul class="clean-list flex align-end"> -->
                 <li class="gallery-li selected"><a onclick="onGoToGallery()" class="gallery-a" href="#">gallery</a></li>
-                <li><a href="#">memes</a></li>
+                <li><a onclick="onGoToMemes()" href="#">memes</a></li>
                 <li><a href="#">about</a></li>
                 <i class="fa fa-camera-retro"></i>
             </ul>
@@ -66,8 +66,8 @@
                 </div>
                 <div class="download-share flex space-even">
                     <a href="#" class="download" onclick="onDownload(this)" download="my-img.jpg">Download</a>
-                    <a href="#" class="Upload" onclick="uploadImg()">Upload</a>
-                    <a href="#" class="save" onclick="onSave()">Save</a>
+                    <a href="#" class="Upload" onclick="uploadImg()">Upload and save</a>
+                    <!-- <a href="#" class="save" onclick="onSave()">Save</a> -->
                 </div>
                 <div class="share-modal-rapper" hidden>
                     <div class="share-modal" hidden>
@@ -78,6 +78,14 @@
                 </div>
             </section>
         </main>
+    </div>
+    <div class="memes-rapper" hidden>
+        <section class="memes main-layout flex justify-center">
+            <!-- <img src="http://ca-upload.com/here/img/617cf65e1e105.jpg" alt="">
+            <img src="http://ca-upload.com/here/img/617cf65e1e105.jpg" alt="">
+            <img src="http://ca-upload.com/here/img/617cf65e1e105.jpg" alt="">
+            <img src="http://ca-upload.com/here/img/617cf65e1e105.jpg" alt=""> -->
+        </section>
     </div>
     <section class="search-gallery">
         <section class="search-bar main-layout flex align-center">

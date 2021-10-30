@@ -3,6 +3,7 @@ var gImgs = [];
 var gFilterSearchBy;
 var gKeyWordsClicks = {};
 var gImgQty = 18;
+var gMemeSaved = [];
 var gKeyWords = ['happy', 'ironic', 'sad', 'dramatic', 'angry', 'beautiful', 'annoying', 'bad']
 var gMeme = {
     imgId: 3,
@@ -31,6 +32,10 @@ function getImgs() {
         })
     }
     return imgs;
+}
+
+function getSavedMemes(){
+    return gMemeSaved
 }
 
 function getRandKeyWords() {
@@ -102,12 +107,22 @@ function switchLine() {
     if (gMeme.lineIndex > gMeme.lines.length - 1) gMeme.lineIndex = 0;
 }
 
-function getYRange(idx) {
+function getRange(idx) {
+    const xPos = gMeme.lines[idx].xPos;
     const yPos = gMeme.lines[idx].yPos;
-    const size = gMeme.lines[idx].size;
-    const yMin = yPos - size;
-    const yMax = yPos + 7;
-    return { yMin, yMax }
+    const type = gMeme.lines[idx].type;
+    if(type === 'text'){
+        const size = gMeme.lines[idx].size;
+        const yMin = yPos - size;
+        const yMax = yPos + 7;
+        return { yMin, yMax }
+    }else{
+        const yMin = yPos - 25;
+        const yMax = yPos + 30;
+        const xMin = xPos - 25;
+        const xMax = xPos + 25;
+        return { yMin, yMax , xMin, xMax }
+    }
 }
 
 function getImgId() {
@@ -151,4 +166,10 @@ function deleteLine() {
 
 function filterImgs(searchText) {
     gFilterSearchBy = searchText;
+}
+// saveImgToMeme();
+function saveImgToMeme(imgUrl){
+    var res = imgUrl.indexOf('id=') + 3;
+    var textLink = 'http://ca-upload.com/here/img/' + imgUrl.slice(res) + '.jpg';
+    gMemeSaved.push(textLink);
 }

@@ -37,9 +37,18 @@ function drawImgFromlocal() {
 function renderGallery() {
     var imgs = getImgs();
     var strHtmls = imgs.map(function (img) {
-        return `<img onclick="onChooseImg(this)" data-name="${img.id}" class="pic img-${img.id}" src="${img.url}" title="${img.keywords}"></div>`
+        return `<img onclick="onChooseImg(this)" data-name="${img.id}" class="pic img-${img.id}" src="${img.url}" title="${img.keywords}">`
     })
     document.querySelector('.main-gallery').innerHTML = strHtmls.join('');
+}
+
+function renderMemes(){
+    var savedMemes = getSavedMemes();
+    var strHtmls = savedMemes.map(function (meme) {
+        // <img src="http://ca-upload.com/here/img/617cf65e1e105.jpg" alt="">
+        return `<img src="${meme}">`
+    })
+    document.querySelector('.memes').innerHTML = strHtmls.join('');
 }
 
 function getTextToInput() {
@@ -124,7 +133,7 @@ function textOnCanvas(el) {
 }
 
 function onChooseImg(el) {
-    replaceSections();
+    goToMemeEditor();
     const imgIdx = el.dataset.name;
     setNewgMeme(imgIdx);
     getTextToInput();
@@ -134,14 +143,24 @@ function onChooseImg(el) {
 function onGoToGallery() {
     document.querySelector('.main-rapper').hidden = true;
     document.querySelector('.search-gallery').hidden = false;
+    document.querySelector('.memes-rapper').hidden = true;
     document.querySelector('.gallery-li').classList.add('selected');
     document.querySelector('.gallery-a').style.color = 'black';
     document.body.classList.remove('menu-open');
+    renderGallery();
 }
 
-function replaceSections() {
+function onGoToMemes(){
+    document.querySelector('.main-rapper').hidden = true;
+    document.querySelector('.search-gallery').hidden = true;
+    document.querySelector('.memes-rapper').hidden = false;
+    renderMemes();
+}
+
+function goToMemeEditor() {
     document.querySelector('.main-rapper').hidden = false;
     document.querySelector('.search-gallery').hidden = true;
+    document.querySelector('.memes-rapper').hidden = true;
     document.querySelector('.gallery-li').classList.remove('selected');
     document.querySelector('.gallery-a').style.color = 'white';
 

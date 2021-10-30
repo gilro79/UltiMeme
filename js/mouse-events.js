@@ -28,9 +28,12 @@ function onDown(ev) {
     gIsDown = true;
     var { offsetX, offsetY } = ev;
     const lines = getLines();
-    lines.forEach((line, idx) => {       // fix the x range for the stickers!
-        const { yMin, yMax } = getYRange(idx);
+    lines.forEach((line, idx) => {
+        const { yMin, yMax , xMin, xMax } = getRange(idx);
         if (offsetX > 5 && offsetX < 260 && offsetY > yMin && offsetY < yMax) {
+            if(line.type === 'sticker'){
+                if(offsetX < xMin || offsetX > xMax) return;
+            }
             gIsOnText = true;
             document.querySelector('canvas').style.cursor = 'grabbing';
             switchFocus(idx);
