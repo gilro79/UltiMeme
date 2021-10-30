@@ -203,6 +203,18 @@ canvas {
     margin-bottom: 5px;
 }
 
+.upload-img{
+    margin-top: 5px;
+}
+
+.file-input {
+    background-color: #ff7f00;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
 /* GALLERY */
 
 .main-gallery {
@@ -225,7 +237,7 @@ canvas {
     cursor: pointer;
 }
 
-.main-gallery .pic:nth-child(3n){
+.main-gallery .pic:nth-child(3n) {
     grid-column: span 2;
     grid-row: span 3;
 }
@@ -340,16 +352,20 @@ footer {
     .search-area input {
         width: 160px;
     }
+
     .main-gallery {
         background-color: #e3e3e3;
         padding: 9px 15px;
-        display:block;
+        display: block;
     }
     .main-gallery .pic {
         object-fit: cover;
         height: 100%;
         margin: 2px;
         cursor: pointer;
+    }
+    canvas {
+        margin-bottom: 10px;
     }
     .main-controls {
         height: auto;

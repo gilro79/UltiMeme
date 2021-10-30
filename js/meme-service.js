@@ -1,5 +1,6 @@
 'use strict'
 var gImgs = [];
+const KEY = 'memes';
 var gFilterSearchBy;
 var gKeyWordsClicks = {};
 var gImgQty = 18;
@@ -20,6 +21,21 @@ function setGImgs() {
         img.keywords = getRandKeyWords();
         gImgs.push(img);
     }
+}
+
+_createMemes();
+
+function _createMemes() {
+    var memes = loadFromStorage(KEY)
+    if (!memes || !memes.length) {
+        memes = ['http://ca-upload.com/here/img/617d733f20d70.jpg','http://ca-upload.com/here/img/617cf65e1e105.jpg']
+    }
+    gMemeSaved = memes;
+    _saveMemesToStorage();
+}
+
+function _saveMemesToStorage() {
+    saveToStorage(KEY, gMemeSaved);
 }
 
 function getImgs() {
@@ -61,7 +77,7 @@ function setNewgMeme(idx) {
 }
 
 function createLine() {
-    gElCanvas = document.querySelector('canvas');
+    const gElCanvas = document.querySelector('canvas');
     var line =
     {
         xPos: gElCanvas.width / 2,
@@ -193,4 +209,5 @@ function saveImgToMeme(imgUrl) {
     var res = imgUrl.indexOf('id=') + 3;
     var textLink = 'http://ca-upload.com/here/img/' + imgUrl.slice(res) + '.jpg';
     gMemeSaved.push(textLink);
+    _saveMemesToStorage();
 }

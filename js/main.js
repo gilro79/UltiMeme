@@ -24,13 +24,11 @@ function drawImgFromlocal() {
     img.src = `img/meme-imgs-various-aspect-ratios/${imgId}.jpg`;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
-        // if(gIsOnText && gIsDown) 
         if (gIsRendRect) {
             renderRect();
         }
         renderText();
         gIsRendRect = true;
-
     }
 }
 
@@ -42,8 +40,12 @@ function renderGallery() {
     document.querySelector('.main-gallery').innerHTML = strHtmls.join('');
 }
 
-function renderMemes(){
+function renderMemes() {
     var savedMemes = getSavedMemes();
+    // if (savedMemes.length === 0) {
+    //     document.querySelector('.memes').innerHTML = `<img src="http://ca-upload.com/here/img/617cf65e1e105.jpg" alt="">`
+    //     return;
+    // }
     var strHtmls = savedMemes.map(function (meme) {
         return `<img src="${meme}">`
     })
@@ -58,7 +60,7 @@ function getTextToInput() {
     inputText.value = text;
 }
 
-function setCanvasHeight(width, height){
+function setCanvasHeight(width, height) {
     const ratio = width / height;
     gElCanvas.height = 270 / ratio;
 
@@ -158,7 +160,7 @@ function onGoToGallery() {
     renderGallery();
 }
 
-function onGoToMemes(){
+function onGoToMemes() {
     document.querySelector('.main-rapper').hidden = true;
     document.querySelector('.search-gallery').hidden = true;
     document.querySelector('.memes-rapper').hidden = false;
@@ -201,21 +203,21 @@ function onAddLine() {
     getTextToInput();
 }
 
-function onCenterAlign(){
+function onCenterAlign() {
     setXposalign('center')
-    
+
     renderCanvas();
 }
 
-function onLeftAlign(){
+function onLeftAlign() {
     setXposalign('left')
-    
+
     renderCanvas();
 }
 
-function onRightAlign(){
+function onRightAlign() {
     setXposalign('right')
-    
+
     renderCanvas();
 }
 
@@ -298,4 +300,21 @@ function closeModal() {
 
 function toggleMenu() {
     document.body.classList.toggle('menu-open');
+}
+
+function onImgInput(ev) {
+    loadImageFromInput(ev, renderCanvas)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    document.querySelector('.share-container').innerHTML = ''
+    var reader = new FileReader()
+
+    reader.onload = function (event) {
+        var img = new Image()
+        goToMemeEditor();
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result
+    }
+    reader.readAsDataURL(ev.target.files[0])
 }

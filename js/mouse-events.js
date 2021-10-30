@@ -29,29 +29,31 @@ function onDown(ev) {
     var { offsetX, offsetY } = ev;
     const lines = getLines();
     lines.forEach((line, idx) => {
-        const { yMin, yMax , xMin, xMax } = getRange(idx);
+        const { yMin, yMax, xMin, xMax } = getRange(idx);
         const canvasWidth = document.querySelector('canvas').width;
         if (offsetX > 0 && offsetX < canvasWidth && offsetY > yMin && offsetY < yMax) {
-            if(line.type === 'sticker'){
-                if(offsetX < xMin || offsetX > xMax) return;
+            if (line.type === 'sticker') {
+                if (offsetX < xMin || offsetX > xMax) return;
             }
             gIsOnText = true;
             document.querySelector('canvas').style.cursor = 'grabbing';
             switchFocus(idx);
             const pos = getEvPos(ev);
             gStartPos = pos;
+            return;
         }
-        
     });
-
+    gIsRendRect = false;
+    renderCanvas();
 }
-function onMove(ev) {  
+
+function onMove(ev) {
     if (gIsDown && gIsOnText) {
         const pos = getEvPos(ev);
         const dx = pos.x - gStartPos.x;
         const dy = pos.y - gStartPos.y;
         gStartPos = pos;
-        moveLine(dx,dy);
+        moveLine(dx, dy);
     }
 }
 
@@ -76,8 +78,10 @@ function getEvPos(ev) {
         ev.preventDefault()
         ev = ev.changedTouches[0]
         pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+            x: ev.pageX + ev.target.offsetLeft,
+            y: ev.pageY + ev.target.offsetTop
+            // x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            // y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
         }
     }
     return pos
