@@ -138,8 +138,6 @@ function textOnCanvas(el) {
 }
 
 function onChooseImg(el) {
-    console.log('el.width', el.width);
-    console.log('el.height', el.height);
     setCanvasHeight(el.width, el.height);
     goToMemeEditor();
     const imgIdx = el.dataset.name;
@@ -201,6 +199,24 @@ function onAddLine() {
     addLine();
     renderCanvas();
     getTextToInput();
+}
+
+function onCenterAlign(){
+    setXposalign('center')
+    
+    renderCanvas();
+}
+
+function onLeftAlign(){
+    setXposalign('left')
+    
+    renderCanvas();
+}
+
+function onRightAlign(){
+    setXposalign('right')
+    
+    renderCanvas();
 }
 
 function onAddSticker(el) {

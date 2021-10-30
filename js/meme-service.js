@@ -9,7 +9,6 @@ var gMeme = {
     imgId: 3,
     lineIndex: 0,
     lines: [createLine()]
-
 };
 
 // setting the first imgs on init
@@ -34,7 +33,7 @@ function getImgs() {
     return imgs;
 }
 
-function getSavedMemes(){
+function getSavedMemes() {
     return gMemeSaved
 }
 
@@ -56,6 +55,7 @@ function setNewgMeme(idx) {
     gMeme = {
         imgId: idx,
         lineIndex: 0,
+        isAlign: false,
         lines: [createLine()]
     }
 }
@@ -71,7 +71,7 @@ function createLine() {
         align: 'center',
         color: 'white',
         type: 'text',
-        stickerId : 'not-sticker'
+        stickerId: 'not-sticker'
     }
     return line;
 }
@@ -86,7 +86,8 @@ function moveLine(dx, dy) {
 
 function addLine() {
     const newLine = createLine();
-    newLine.yPos = (gMeme.lines.length === 1) ? 250 : 150;
+    const canvasHeight = document.querySelector('canvas').height;
+    newLine.yPos = (gMeme.lines.length === 1) ? canvasHeight - 20 : canvasHeight / 2 + 10;
     gMeme.lines.push(newLine);
     gMeme.lineIndex += 1;
 }
@@ -111,17 +112,17 @@ function getRange(idx) {
     const xPos = gMeme.lines[idx].xPos;
     const yPos = gMeme.lines[idx].yPos;
     const type = gMeme.lines[idx].type;
-    if(type === 'text'){
+    if (type === 'text') {
         const size = gMeme.lines[idx].size;
         const yMin = yPos - size;
         const yMax = yPos + 7;
         return { yMin, yMax }
-    }else{
+    } else {
         const yMin = yPos - 25;
         const yMax = yPos + 30;
         const xMin = xPos - 25;
         const xMax = xPos + 25;
-        return { yMin, yMax , xMin, xMax }
+        return { yMin, yMax, xMin, xMax }
     }
 }
 
@@ -133,7 +134,7 @@ function getLines() {
     return gMeme.lines;
 }
 
-function getLine(){
+function getLine() {
     return gMeme.lines[gMeme.lineIndex];
 }
 
@@ -157,6 +158,26 @@ function changeFontSize(sign) {
 
 }
 
+function setXposalign(direction) {
+    if (gMeme.lines[gMeme.lineIndex].type === 'sticker') return;
+    const text = gMeme.lines[gMeme.lineIndex].text;
+    const textMeasure = gCtx.measureText(text)
+    switch (direction) {
+        case 'center':
+            gMeme.lines[gMeme.lineIndex].xPos = gElCanvas.width / 2;
+            break;
+        case 'left':
+            gMeme.lines[gMeme.lineIndex].xPos = gElCanvas.width - textMeasure.width + 5;
+            break;
+        case 'right':
+            gMeme.lines[gMeme.lineIndex].xPos = (gElCanvas.width - textMeasure.width) / 2 + gElCanvas.width / 2 - 5;
+            break;
+
+        default:
+            break;
+    }
+}
+
 function deleteLine() {
     if (gMeme.lineIndex === 0) return;
     const idx = gMeme.lineIndex;
@@ -168,7 +189,7 @@ function filterImgs(searchText) {
     gFilterSearchBy = searchText;
 }
 // saveImgToMeme();
-function saveImgToMeme(imgUrl){
+function saveImgToMeme(imgUrl) {
     var res = imgUrl.indexOf('id=') + 3;
     var textLink = 'http://ca-upload.com/here/img/' + imgUrl.slice(res) + '.jpg';
     gMemeSaved.push(textLink);

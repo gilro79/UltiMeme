@@ -30,7 +30,8 @@ function onDown(ev) {
     const lines = getLines();
     lines.forEach((line, idx) => {
         const { yMin, yMax , xMin, xMax } = getRange(idx);
-        if (offsetX > 5 && offsetX < 260 && offsetY > yMin && offsetY < yMax) {
+        const canvasWidth = document.querySelector('canvas').width;
+        if (offsetX > 0 && offsetX < canvasWidth && offsetY > yMin && offsetY < yMax) {
             if(line.type === 'sticker'){
                 if(offsetX < xMin || offsetX > xMax) return;
             }
