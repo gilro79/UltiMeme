@@ -183,7 +183,7 @@ function setXposalign(direction) {
             gMeme.lines[gMeme.lineIndex].xPos = gElCanvas.width / 2;
             break;
         case 'left':
-            gMeme.lines[gMeme.lineIndex].xPos = gElCanvas.width - textMeasure.width + 5;
+            gMeme.lines[gMeme.lineIndex].xPos = (gElCanvas.width - textMeasure.width) + 5;
             break;
         case 'right':
             gMeme.lines[gMeme.lineIndex].xPos = (gElCanvas.width - textMeasure.width) / 2 + gElCanvas.width / 2 - 5;

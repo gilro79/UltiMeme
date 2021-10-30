@@ -11,7 +11,7 @@
 
 html {
     font-family: montserrat, serif;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 body {
@@ -319,8 +319,8 @@ footer {
         top: 40px;
         background-color: #ff7f00;
         gap: unset;
-        height: 90px;
-        width: 100px;
+        height: 170px;
+        width: 130px;
         right: 0;
         border-radius: 5px;
         font-size: 2rem;

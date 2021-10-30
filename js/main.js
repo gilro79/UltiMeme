@@ -164,6 +164,7 @@ function onGoToMemes() {
     document.querySelector('.memes-li').classList.add('selected');
     document.querySelector('.gallery-a').style.color = 'white';
     document.querySelector('.memes-a').style.color = 'black';
+    document.body.classList.remove('menu-open');
     renderMemes();
 }
 
@@ -263,7 +264,7 @@ function searchThis(el) {
 }
 
 function searchWordFontInc(el) {
-    const initialFontSize = 10;
+    const initialFontSize = 12;
     const keyWord = el.innerText;
     const clickNumber = getClickNumber(keyWord);
     let fontSize = initialFontSize + clickNumber + 'px';
