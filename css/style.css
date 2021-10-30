@@ -125,7 +125,7 @@ canvas {
     color: white;
     padding: 10px 10px;
     border-radius: 5px;
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
 }
 
 .download-share a:hover, .share-modal a:hover {
