@@ -3,7 +3,7 @@ var gImgs = [];
 const KEY = 'memes';
 var gFilterSearchBy;
 var gKeyWordsClicks = {};
-var gImgQty = 19;
+var gImgQty = 25;
 var gMemeSaved = [];
 var gKeyWords = ['happy', 'ironic', 'sad', 'dramatic', 'angry', 'beautiful', 'annoying', 'bad']
 var gMeme = {
