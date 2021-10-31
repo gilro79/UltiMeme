@@ -350,6 +350,11 @@ footer {
     body.menu-open .btn-menu::before {
         content: 'X';
     }
+    
+    .upload-img {
+        margin-bottom: 10px;
+    }
+
     .main-content {
         flex-direction: column;
     }

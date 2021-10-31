@@ -29,7 +29,7 @@ _createMemes();
 function _createMemes() {
     var memes = loadFromStorage(KEY)
     if (!memes || !memes.length) {
-        memes = ['http://ca-upload.com/here/img/617d733f20d70.jpg','http://ca-upload.com/here/img/617cf65e1e105.jpg']
+        memes = ['http://ca-upload.com/here/img/617d733f20d70.jpg', 'http://ca-upload.com/here/img/617cf65e1e105.jpg']
     }
     gMemeSaved = memes;
     _saveMemesToStorage();
@@ -43,9 +43,7 @@ function getImgs() {
     var imgs = gImgs;
 
     if (gFilterSearchBy) {
-        imgs = gImgs.filter(function (img) {
-            return img.keywords.join().includes(gFilterSearchBy)
-        })
+        imgs = gImgs.filter(img => img.keywords.join().includes(gFilterSearchBy))
     }
     return imgs;
 }
@@ -78,7 +76,7 @@ function setNewgMeme(idx) {
     }
 }
 
-function setgMemeFromUpload(url){
+function setgMemeFromUpload(url) {
     gMeme = {
         imgId: '',
         lineIndex: 0,
@@ -88,7 +86,7 @@ function setgMemeFromUpload(url){
     }
 }
 
-function getgMeme(){
+function getgMeme() {
     return gMeme;
 }
 
@@ -181,28 +179,30 @@ function updateText(text) {
 
 function switchFocus(idx) {
     gMeme.lineIndex = idx;
-    onSwitchFocus();
 }
 
 function changeFontSize(sign) {
-    const line = gMeme.lines[gMeme.lineIndex];
+    const line = getLine();
     line.size += sign;
 
 }
 
-function setXposalign(direction) {
-    if (gMeme.lines[gMeme.lineIndex].type === 'sticker') return;
-    const text = gMeme.lines[gMeme.lineIndex].text;
-    const textMeasure = gCtx.measureText(text)
+function setXposAlign(direction) {
+    if (getLine().type === 'sticker') return;
+    const text = getLine().text;
+    const lineSize = getLine().size;
+    const textMeasure = gCtx.measureText(text);
+    console.log('textMeasure.width', textMeasure.width);
+    console.log('lineSize', lineSize);
     switch (direction) {
         case 'center':
-            gMeme.lines[gMeme.lineIndex].xPos = gElCanvas.width / 2;
+            getLine().xPos = gElCanvas.width / 2;
             break;
         case 'left':
-            gMeme.lines[gMeme.lineIndex].xPos = (gElCanvas.width - textMeasure.width) + 5;
+            getLine().xPos = (gElCanvas.width - textMeasure.width) + 5 + (lineSize - 25) * 11;
             break;
         case 'right':
-            gMeme.lines[gMeme.lineIndex].xPos = (gElCanvas.width - textMeasure.width) / 2 + gElCanvas.width / 2 - 5;
+            getLine().xPos = (gElCanvas.width - textMeasure.width) / 2 + gElCanvas.width / 2 - 5;
             break;
 
         default:
@@ -220,9 +220,9 @@ function deleteLine() {
 function filterImgs(searchText) {
     gFilterSearchBy = searchText;
 }
-// saveImgToMeme();
+
 function saveImgToMeme(imgUrl) {
-    var res = imgUrl.indexOf('id=') + 3;    
+    var res = imgUrl.indexOf('id=') + 3;
     var textLink = 'http://ca-upload.com/here/img/' + imgUrl.slice(res) + '.jpg';
     gMemeSaved.push(textLink);
     _saveMemesToStorage();

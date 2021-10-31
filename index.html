@@ -11,7 +11,6 @@
 </head>
 
 <body onload="init()">
-
     <header class="main-layout flex space-between">
         <div class="logo flex align-center"><img src="img/logo/Layer 2.png" alt=""></div>
         <nav class="flex align-end">
@@ -25,8 +24,8 @@
             </ul>
         </nav>
     </header>
-    <div class="main-rapper" hidden>
-        <main class="main-content main-layout flex center space-between">
+    <main class="main-wrapper" hidden>
+        <section class="main-content main-layout flex center space-between">
             <canvas width="270" height="270"></canvas>
             <section class="main-controls flex center column">
                 <input class="meme-text" type="text" oninput="textOnCanvas(this)">
@@ -42,33 +41,34 @@
                     </button>
                 </div>
                 <div class="font-size-align flex justify-center">
-                    <button class="inc-fon flex align-center justify-center" onclick="onIncreaseFont()">
+                    <button class="inc-fon flex align-center justify-center" onclick="onChangeFontSize(1)">
                         <img src="img/icons/increase font - icon.png">
                     </button>
-                    <button class="dec-font flex align-center justify-center" onclick="onDecreaseFont()">
+                    <button class="dec-font flex align-center justify-center" onclick="onChangeFontSize(-1)">
                         <img src="img/icons/decrease font - icon.png">
                     </button>
-                    <button class="left-align flex align-center justify-center" onclick="onLeftAlign()">
+                    <button class="left-align flex align-center justify-center" onclick="onTextAlign('left')">
                         <img src="img/icons/align-to-left.png">
                     </button>
-                    <button class="center-align flex align-center justify-center" onclick="onCenterAlign()">
+                    <button class="center-align flex align-center justify-center" onclick="onTextAlign('center')">
                         <img src="img/icons/center-text-alignment.png">
                     </button>
-                    <button class="right-align flex align-center justify-center" onclick="onRightAlign()">
+                    <button class="right-align flex align-center justify-center" onclick="onTextAlign('right')">
                         <img src="img/icons/align-to-right.png">
                     </button>
                 </div>
                 <div class="stickers">
                     <img src="img/stickers/1.png" class="stic-1" onclick="onAddSticker(this)">
-                    <img src="img/stickers/2.png" class="stic-2" data-url="img/stickers/cat.png" onclick="onAddSticker(this)">
-                    <img src="img/stickers/3.png" class="stic-3" data-url="img/stickers/haha.png" onclick="onAddSticker(this)">
+                    <img src="img/stickers/2.png" class="stic-2" data-url="img/stickers/cat.png"
+                        onclick="onAddSticker(this)">
+                    <img src="img/stickers/3.png" class="stic-3" data-url="img/stickers/haha.png"
+                        onclick="onAddSticker(this)">
                 </div>
                 <div class="download-share flex space-even">
                     <a href="#" class="download" onclick="onDownload(this)" download="my-img.jpg">Download</a>
                     <a href="#" class="Upload" onclick="uploadImg()">Upload and save</a>
                 </div>
-                
-                <div class="share-modal-rapper" hidden>
+                <div class="share-modal-wrapper" hidden>
                     <div class="share-modal" hidden>
                         <div class="close-modal" onclick="closeModal()">X</div>
                         <div class="user-msg"></div>
@@ -76,11 +76,11 @@
                     </div>
                 </div>
             </section>
-        </main>
-    </div>
-    <div class="memes-rapper" hidden>
+        </section>
+    </main>
+    <section class="memes-wrapper" hidden>
         <section class="memes main-layout"></section>
-    </div>
+    </section>
     <section class="search-gallery">
         <section class="search-bar main-layout flex align-center">
             <div class="search-area main-layout flex space-between">
@@ -95,7 +95,7 @@
                 </ul>
             </div>
         </section>
-        <div class="more-words-rapper" hidden>
+        <div class="more-words-wrapper" hidden>
             <div class="more-words main-layout flex justify-center">
                 <ul class="search-words flex align-center clean-list">
                     <li onclick="searchThis(this)">dramatic</li>
@@ -108,23 +108,19 @@
         <div class="upload-img main-layout">
             <input type="file" class="file-input" name="image" onchange="onImgInput(event)" />
         </div>
-        <section class="main-gallery main-layout">
-            
-        </section>
+        <section class="main-gallery main-layout"></section>
     </section>
-
     <footer class="main-layout flex column align-center justify-center">
         <div class="logo flex align-center"><img src="img/logo/Layer 2.png" alt=""></div>
         <div class="all-rights">all rights reserved 2019</div>
-
     </footer>
     <!-- <div class="container-for-upload"></div> -->
 
     <script src="js/meme-utils.js"></script>
     <script src="js/mouse-events.js"></script>
-    <script src="js/Services/storage-service.js"></script>
-    <script src="js/Services/meme-service.js"></script>
-    <script src="js/Services/upload-service.js"></script>
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/services/upload-service.js"></script>
     <script src="js/meme-controller.js"></script>
 </body>
 

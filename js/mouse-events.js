@@ -39,6 +39,7 @@ function onDown(ev) {
             gIsOnText = true;
             document.querySelector('canvas').style.cursor = 'grabbing';
             switchFocus(idx);
+            onSwitchFocus();
             const pos = getEvPos(ev);
             gStartPos = pos;
             return;

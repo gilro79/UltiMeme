@@ -1,6 +1,6 @@
 
 function uploadImg() {
-    document.querySelector('.share-modal-rapper').hidden = false;
+    document.querySelector('.share-modal-wrapper').hidden = false;
     const imgDataUrl = gElCanvas.toDataURL("image/jpeg");
 
     // A function to be called if request succeeds
@@ -18,22 +18,20 @@ function uploadImg() {
 }
 
 function doUploadImg(imgDataUrl, onSuccess) {
-
     const formData = new FormData();
     formData.append('img', imgDataUrl)
-
     fetch('//ca-upload.com/here/upload.php', {
         method: 'POST',
         body: formData
     })
-    .then(res => res.text())
-    .then((url)=>{
-        console.log('Got back live url:', url);
-        onSuccess(url)
-    })
-    .catch((err) => {
-        console.error(err)
-    })
+        .then(res => res.text())
+        .then((url) => {
+            console.log('Got back live url:', url);
+            onSuccess(url)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
 }
 
 

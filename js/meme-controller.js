@@ -12,8 +12,6 @@ function init() {
     setGImgs();
     // resizeCanvas()
     addListeners()
-    // getTextToInput();
-    // renderCanvas();
     renderGallery();
 }
 
@@ -21,9 +19,9 @@ function drawImgFromlocal() {
     var img = new Image();
     const meme = getgMeme();
     const imgId = meme.imgId;
-    if(imgId){
+    if (imgId) {
         img.src = `img/meme-imgs-various-aspect-ratios/${imgId}.jpg`;
-    }else{
+    } else {
         console.log('from upload');
         img.src = meme.dataUrl;
     }
@@ -40,7 +38,7 @@ function drawImgFromlocal() {
 
 function renderGallery() {
     var imgs = getImgs();
-    var strHtmls = imgs.map(function (img) {
+    var strHtmls = imgs.map(img => {
         return `<img onclick="onChooseImg(this)" data-name="${img.id}" class="pic img-${img.id}" src="${img.url}" title="${img.keywords}">`
     })
     document.querySelector('.main-gallery').innerHTML = strHtmls.join('');
@@ -48,9 +46,7 @@ function renderGallery() {
 
 function renderMemes() {
     var savedMemes = getSavedMemes();
-    var strHtmls = savedMemes.map(function (meme) {
-        return `<img src="${meme}">`
-    })
+    var strHtmls = savedMemes.map(meme => `<img src="${meme}">`)
     document.querySelector('.memes').innerHTML = strHtmls.join('');
 }
 
@@ -69,15 +65,12 @@ function setCanvasHeight(width, height) {
 }
 
 function renderCanvas() {
-    // gCtx.save()
     drawImgFromlocal();
-    // gCtx.restore();
 }
 
 function renderText() {
     const lines = getLines();
     lines.forEach(line => {
-        // debugger;
         const { xPos, yPos, text, size, align, color, type } = line;
         if (type === 'sticker') {
             renderSticker(line);
@@ -88,7 +81,6 @@ function renderText() {
 }
 
 function renderSticker(line) {
-    // const line = getLine();
     const { xPos, yPos, text, size, align, color, type } = line;
     gCtx.beginPath();
     const elImg = document.querySelector(`.${line.stickerId}`);
@@ -129,7 +121,6 @@ function drawText(xPos, yPos, text, size, align, color) {
     gCtx.font = `${size}px Impact`;
     gCtx.textAlign = align;
     const textMeasure = gCtx.measureText(text);
-    // console.log('textMeasure.width', textMeasure.width);
     gCtx.fillText(text, xPos, yPos);
     gCtx.strokeText(text, xPos, yPos);
 }
@@ -151,9 +142,9 @@ function onChooseImg(el) {
 }
 
 function onGoToGallery() {
-    document.querySelector('.main-rapper').hidden = true;
+    document.querySelector('.main-wrapper').hidden = true;
     document.querySelector('.search-gallery').hidden = false;
-    document.querySelector('.memes-rapper').hidden = true;
+    document.querySelector('.memes-wrapper').hidden = true;
     document.querySelector('.gallery-li').classList.add('selected');
     document.querySelector('.memes-li').classList.remove('selected');
     document.querySelector('.gallery-a').style.color = 'black';
@@ -163,9 +154,9 @@ function onGoToGallery() {
 }
 
 function onGoToMemes() {
-    document.querySelector('.main-rapper').hidden = true;
+    document.querySelector('.main-wrapper').hidden = true;
     document.querySelector('.search-gallery').hidden = true;
-    document.querySelector('.memes-rapper').hidden = false;
+    document.querySelector('.memes-wrapper').hidden = false;
     document.querySelector('.gallery-li').classList.remove('selected');
     document.querySelector('.memes-li').classList.add('selected');
     document.querySelector('.gallery-a').style.color = 'white';
@@ -175,9 +166,9 @@ function onGoToMemes() {
 }
 
 function goToMemeEditor() {
-    document.querySelector('.main-rapper').hidden = false;
+    document.querySelector('.main-wrapper').hidden = false;
     document.querySelector('.search-gallery').hidden = true;
-    document.querySelector('.memes-rapper').hidden = true;
+    document.querySelector('.memes-wrapper').hidden = true;
     document.querySelector('.gallery-li').classList.remove('selected');
     document.querySelector('.memes-li').classList.remove('selected');
     document.querySelector('.gallery-a').style.color = 'white';
@@ -188,44 +179,22 @@ function onMoveLine() {
     renderCanvas();
 }
 
-function onIncreaseFont() {
-    const sign = 1;
+function onChangeFontSize(sign) {
     changeFontSize(sign)
     renderCanvas();
 }
-
-function onDecreaseFont() {
-    const sign = -1;
-    changeFontSize(sign)
-    renderCanvas();
-}
-
 function onAddLine() {
     addLine();
     renderCanvas();
     getTextToInput();
 }
 
-function onCenterAlign() {
-    setXposalign('center')
-
-    renderCanvas();
-}
-
-function onLeftAlign() {
-    setXposalign('left')
-
-    renderCanvas();
-}
-
-function onRightAlign() {
-    setXposalign('right')
-
+function onTextAlign(align) {
+    setXposAlign(align);
     renderCanvas();
 }
 
 function onAddSticker(el) {
-    // console.log(el.classList[0]);
     const stickerId = el.classList[0];
     addSticker(stickerId);
     renderCanvas();
@@ -279,9 +248,9 @@ function searchWordFontInc(el) {
 }
 
 function toggleMoreSearchWords() {
-    let el = document.querySelector('.more-words-rapper').hidden;
+    let el = document.querySelector('.more-words-wrapper').hidden;
     el = !el;
-    document.querySelector('.more-words-rapper').hidden = el;
+    document.querySelector('.more-words-wrapper').hidden = el;
     if (el) {
         document.querySelector('.more-li').innerText = 'more'
     } else {
@@ -298,7 +267,7 @@ function onDownload(elLink) {
 }
 
 function closeModal() {
-    document.querySelector('.share-modal-rapper').hidden = true;
+    document.querySelector('.share-modal-wrapper').hidden = true;
 }
 
 function toggleMenu() {
@@ -308,7 +277,7 @@ function toggleMenu() {
 function onImgInput(ev) {
     loadImageFromInput(ev, renderCanvas)
 }
-var gImgTest;
+// var gImgTest;
 function loadImageFromInput(ev, onImageReady) {
     document.querySelector('.share-container').innerHTML = ''
     var reader = new FileReader()
@@ -317,16 +286,13 @@ function loadImageFromInput(ev, onImageReady) {
         var img = new Image();
         goToMemeEditor();
         img.onload = onImageReady.bind(null, img);
-        // const elcontainerImg = document.querySelector('.container-for-upload');
-        // elcontainerImg.innerHTML = img;
-        // console.log('gImgTestWidth',gImgTest.width);
         img.src = event.target.result;
         gImgTest = img;
-        const imgWidth = img.width;
         setgMemeFromUpload(img.src);
-        console.log('imgSrc',img.src);
-        console.log('gImgTest.width',gImgTest.width);
-        console.log('imgWidth',imgWidth);
+        // const imgWidth = img.width;
+        // console.log('imgSrc',img.src);
+        // console.log('gImgTest.width',gImgTest.width);
+        // console.log('imgWidth',imgWidth);
     }
     reader.readAsDataURL(ev.target.files[0])
 }
