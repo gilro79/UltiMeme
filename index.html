@@ -29,7 +29,7 @@
         <main class="main-content main-layout flex center space-between">
             <canvas width="270" height="270"></canvas>
             <section class="main-controls flex center column">
-                <input class="meme-text" type="text" onkeyup="textOnCanvas(this)">
+                <input class="meme-text" type="text" oninput="textOnCanvas(this)">
                 <div class="switch-add-delete flex justify-center">
                     <button class="switch flex align-center justify-center" onclick="onSwitchLine()">
                         <img src="img/icons/up-and-downarrows.png">
@@ -118,14 +118,14 @@
         <div class="all-rights">all rights reserved 2019</div>
 
     </footer>
-
+    <!-- <div class="container-for-upload"></div> -->
 
     <script src="js/meme-utils.js"></script>
     <script src="js/mouse-events.js"></script>
-    <script src="js/storage-service.js"></script>
-    <script src="js/meme-service.js"></script>
-    <script src="js/upload-service.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/Services/storage-service.js"></script>
+    <script src="js/Services/meme-service.js"></script>
+    <script src="js/Services/upload-service.js"></script>
+    <script src="js/meme-controller.js"></script>
 </body>
 
 </html>

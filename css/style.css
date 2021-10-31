@@ -203,16 +203,26 @@ canvas {
     margin-bottom: 5px;
 }
 
-.upload-img{
+.upload-img {
     margin-top: 5px;
 }
 
 .file-input {
     background-color: #ff7f00;
-    color: white;
-    padding: 10px 10px;
+    color: transparent;
+    width: 200px;
+    padding: 10px 18px;
     border-radius: 5px;
     font-size: 1.2rem;
+}
+
+.file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.file-input::before {
+    content: 'upload file from computer';
+    color: white;
 }
 
 /* GALLERY */
@@ -304,7 +314,7 @@ footer {
 @media (max-width: 620px) {
     .main-layout {
         width: 350px;
-        /* margin: 0 auto; */
+        margin: 0 auto;
     }
     nav {
         position: relative;
@@ -352,7 +362,6 @@ footer {
     .search-area input {
         width: 160px;
     }
-
     .main-gallery {
         background-color: #e3e3e3;
         padding: 9px 15px;
@@ -361,11 +370,13 @@ footer {
     .main-gallery .pic {
         object-fit: cover;
         height: 100%;
+        width: 100%;
         margin: 2px;
         cursor: pointer;
     }
     canvas {
         margin-bottom: 10px;
+        align-self: center;
     }
     .main-controls {
         height: auto;

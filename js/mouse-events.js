@@ -26,14 +26,15 @@ function addTouchListeners() {
 
 function onDown(ev) {
     gIsDown = true;
-    var { offsetX, offsetY } = ev;
+    const pos = getEvPos(ev);
+    var { x, y } = pos;
     const lines = getLines();
     lines.forEach((line, idx) => {
         const { yMin, yMax, xMin, xMax } = getRange(idx);
         const canvasWidth = document.querySelector('canvas').width;
-        if (offsetX > 0 && offsetX < canvasWidth && offsetY > yMin && offsetY < yMax) {
+        if (x > 0 && x < canvasWidth && y > yMin && y < yMax) {
             if (line.type === 'sticker') {
-                if (offsetX < xMin || offsetX > xMax) return;
+                if (x < xMin || x > xMax) return;
             }
             gIsOnText = true;
             document.querySelector('canvas').style.cursor = 'grabbing';
@@ -78,8 +79,8 @@ function getEvPos(ev) {
         ev.preventDefault()
         ev = ev.changedTouches[0]
         pos = {
-            x: ev.pageX + ev.target.offsetLeft,
-            y: ev.pageY + ev.target.offsetTop
+            x: ev.pageX - ev.target.offsetLeft - 30,
+            y: ev.pageY - ev.target.offsetTop - 30
             // x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
             // y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
         }

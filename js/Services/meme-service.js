@@ -3,12 +3,13 @@ var gImgs = [];
 const KEY = 'memes';
 var gFilterSearchBy;
 var gKeyWordsClicks = {};
-var gImgQty = 18;
+var gImgQty = 19;
 var gMemeSaved = [];
 var gKeyWords = ['happy', 'ironic', 'sad', 'dramatic', 'angry', 'beautiful', 'annoying', 'bad']
 var gMeme = {
     imgId: 3,
     lineIndex: 0,
+    dataUrl: '',
     lines: [createLine()]
 };
 
@@ -72,8 +73,23 @@ function setNewgMeme(idx) {
         imgId: idx,
         lineIndex: 0,
         isAlign: false,
+        dataUrl: '',
         lines: [createLine()]
     }
+}
+
+function setgMemeFromUpload(url){
+    gMeme = {
+        imgId: '',
+        lineIndex: 0,
+        isAlign: false,
+        dataUrl: url,
+        lines: [createLine()]
+    }
+}
+
+function getgMeme(){
+    return gMeme;
 }
 
 function createLine() {
@@ -206,7 +222,7 @@ function filterImgs(searchText) {
 }
 // saveImgToMeme();
 function saveImgToMeme(imgUrl) {
-    var res = imgUrl.indexOf('id=') + 3;
+    var res = imgUrl.indexOf('id=') + 3;    
     var textLink = 'http://ca-upload.com/here/img/' + imgUrl.slice(res) + '.jpg';
     gMemeSaved.push(textLink);
     _saveMemesToStorage();

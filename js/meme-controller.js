@@ -19,9 +19,15 @@ function init() {
 
 function drawImgFromlocal() {
     var img = new Image();
-    const imgId = getImgId();
+    const meme = getgMeme();
+    const imgId = meme.imgId;
+    if(imgId){
+        img.src = `img/meme-imgs-various-aspect-ratios/${imgId}.jpg`;
+    }else{
+        console.log('from upload');
+        img.src = meme.dataUrl;
+    }
     const line = getLine();
-    img.src = `img/meme-imgs-various-aspect-ratios/${imgId}.jpg`;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xend,yend
         if (gIsRendRect) {
@@ -302,16 +308,25 @@ function toggleMenu() {
 function onImgInput(ev) {
     loadImageFromInput(ev, renderCanvas)
 }
-
+var gImgTest;
 function loadImageFromInput(ev, onImageReady) {
     document.querySelector('.share-container').innerHTML = ''
     var reader = new FileReader()
 
     reader.onload = function (event) {
-        var img = new Image()
+        var img = new Image();
         goToMemeEditor();
-        img.onload = onImageReady.bind(null, img)
-        img.src = event.target.result
+        img.onload = onImageReady.bind(null, img);
+        // const elcontainerImg = document.querySelector('.container-for-upload');
+        // elcontainerImg.innerHTML = img;
+        // console.log('gImgTestWidth',gImgTest.width);
+        img.src = event.target.result;
+        gImgTest = img;
+        const imgWidth = img.width;
+        setgMemeFromUpload(img.src);
+        console.log('imgSrc',img.src);
+        console.log('gImgTest.width',gImgTest.width);
+        console.log('imgWidth',imgWidth);
     }
     reader.readAsDataURL(ev.target.files[0])
 }
