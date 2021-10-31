@@ -1,6 +1,5 @@
 'use strict'
 
-
 var gElCanvas;
 var gCtx;
 var gIsRendRect = true;
